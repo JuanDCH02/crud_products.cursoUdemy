@@ -10,6 +10,7 @@ import swaggerSpec, { swaggerUiOptions } from "./config/swagger";
 export const server = express();
 //lectura de forms
 server.use(express.json());
+//console.log de peticiones http
 server.use(morgan('dev'))
 //permitir conexiones
 const corsOptions: CorsOptions = {
