@@ -1,8 +1,9 @@
 import { Link, Form, useActionData, type ActionFunctionArgs, redirect, type LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
-import { addproduct, updateProduct } from "../services/ProductService";
+import { updateProduct } from "../services/ProductService";
 import { getProductById } from "../services/ProductService";
 import type { Product } from "../types";
+import ProductForm from "../components/ProductForm";
 
 export async function loader({params} : LoaderFunctionArgs) {
     if(params.id !== undefined){
@@ -52,27 +53,9 @@ export default function EditProduct() {
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
         <Form action="" method="post" className="mt-10">
-            <div className="mb-4">
-                <label htmlFor="name"
-                    className="text-gray-800"
-                    >Nombre Producto:
-                </label>
-                <input type="text" name="name"
-                    placeholder="nombre del producto"
-                    className="mt-2 block w-full p-3 bg-gray-50"
-                    defaultValue={product.name}
-                />
-
-                <label htmlFor="price"
-                    className="text-gray-800"
-                    >Precio:
-                </label>
-                <input type="number" name="price"
-                    placeholder="precio del producto"
-                    className="mt-2 block w-full p-3 bg-gray-50"
-                    defaultValue={product.price}
-                />
-            </div>
+            <ProductForm
+                product= {product}
+            />
 
             <div className="mb-4">
                 <label
@@ -93,6 +76,7 @@ export default function EditProduct() {
 
             <input type="submit" 
                 className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"
+                value='Editar Producto'
             />
         </Form>
     </>
