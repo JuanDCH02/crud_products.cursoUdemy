@@ -1,5 +1,5 @@
-import  request  from "supertest";
-import server, {connectDb} from "../server"
+
+import {connectDb} from "../server"
 
 import db from "../config/db";
 
